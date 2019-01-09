@@ -129,35 +129,69 @@ class App extends Component {
   }
 
   render(){
-    return(
-      <div className="container">
-        <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Digital Clock </h3> </div>
-        <div className='digitalwatchouter'>
-          {
-            (this.state.isDateOn === 'Hide Date') ?
-            (
-              <div className='digitalwatchinner'>
-                <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
-              </div>
-            ) :
+    if (this.state.isStopWatch === 'Hide Stop Watch') {
+      return(
+        /*<div className="container">
+          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Digital Clock </h3> </div>
+          <div className='digitalwatchouter'>
+            {
+              (this.state.isDateOn === 'Hide Date') ?
+              (
+                <div className='digitalwatchinner'>
+                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                  <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
+                </div>
+              ) :
 
-            (
-              <div className='digitalwatchinner'>
-                <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-              </div>
-            )
-          }
+              (
+                <div className='digitalwatchinner'>
+                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                </div>
+              )
+            }
 
+          </div>
+          <div className='btns'>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+          </div>
+          <div className='btns'>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
+          </div>
+        </div>*/
+        <div> Test </div>
+      )
+    } else {
+      return(
+        <div className="container">
+          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Digital Clock </h3> </div>
+          <div className='digitalwatchouter'>
+            {
+              (this.state.isDateOn === 'Hide Date') ?
+              (
+                <div className='digitalwatchinner'>
+                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                  <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
+                </div>
+              ) :
+
+              (
+                <div className='digitalwatchinner'>
+                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                </div>
+              )
+            }
+
+          </div>
+          <div className='btns'>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+          </div>
+          <div className='btns'>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
+          </div>
         </div>
-        <div className='btns'>
-          <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
-        </div>
-        <div className='btns'>
-          <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
-        </div>
-      </div>
-    )
+      )
+    }
+
   }
 }
 
