@@ -17,7 +17,8 @@ class App extends Component {
       lzhrs: '',
       lzmin:'',
       lzsec:'',
-      isDateOn: 'Display Date'
+      isDateOn: 'Display Date',
+      isStopWatch: 'Stop Watch'
     }
   }
 
@@ -115,6 +116,18 @@ class App extends Component {
     }
   }
 
+  handleClickStopWatch() {
+    if(this.state.isStopWatch === 'Stop Watch'){
+      this.setState({
+        isStopWatch: 'Hide Stop Watch'
+      })
+    } else {
+      this.setState({
+        isStopWatch: 'Stop Watch'
+      })
+    }
+  }
+
   render(){
     return(
       <div className="container">
@@ -139,6 +152,9 @@ class App extends Component {
         </div>
         <div className='btns'>
           <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+        </div>
+        <div className='btns'>
+          <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
         </div>
       </div>
     )
