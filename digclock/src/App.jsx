@@ -61,7 +61,6 @@ class App extends Component {
       let m = currentTime.getMinutes();
       let s = currentTime.getSeconds();
 
-
       if (h < 10){
         this.setState({
           lzhrs:'0'
@@ -309,6 +308,14 @@ class App extends Component {
     this.setState({swMode: false, tmode:false})
   }
 
+  itemColor() {
+    if((this.state.hrs >= 12) && (this.state.hrs < 14)){
+      return ('items2')
+    } else {
+      return ('items1')
+    }
+  }
+
   render(){
     if (this.state.swMode) {
       return(
@@ -333,7 +340,7 @@ class App extends Component {
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index} className ='items'> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -341,7 +348,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index} className ='items'> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -349,11 +356,11 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index} className ='items'> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
-              (<div> Off Day </div>)))
+              (<div className ={this.itemColor()}> Off Day </div>)))
             }
           </div>
         </div>
@@ -382,12 +389,13 @@ class App extends Component {
             </div>
           </div>
           <div className = 'schedule'>
+            <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
               ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -395,7 +403,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -403,11 +411,11 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
-              (<div> Off Day </div>)))
+              (<div className ={this.itemColor()}> Off Day </div>)))
             }
           </div>
         </div>
@@ -448,12 +456,13 @@ class App extends Component {
               </div>
           </div>
           <div className = 'schedule'>
+            <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
               ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -461,7 +470,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
@@ -469,11 +478,11 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ={this.itemColor()}> {item} </div>
                 )
               }))
               :
-              (<div> Off Day </div>)))
+              (<div className ={this.itemColor()}> Off Day </div>)))
             }
           </div>
         </div>
