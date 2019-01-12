@@ -1,18 +1,62 @@
+.encompassing{
+  padding: 10px;
+}
+
 .container {
-  width: 65%;
-  height: 100vh;
+  width: 60%;
+  height: 95vh;
   background-color:#808080;
   float:left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  border-left: 5px solid #203B29;
+  border-top: 5px solid #203B29;
+  border-bottom: 5px solid #203B29;
 }
 
 .schedule{
-  width: 35%;
+  background-color: #5F9EA0;
+  width: 40%;
   float: right;
-  border: 1px solid red;
-  height: 100vh;
+  border: 5px solid #203B29;
+  height: 95vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.scheduleTitle{
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: -120px;
+  color: #203B29;
+}
+
+.items {
+  border: 3px solid #203B29;;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #427A55;
+  color: #87FAAE;
+}
+
+.items {
+  border: 3px solid #203B29;;
+  text-align: center;
+  font-size: 20px;
+  padding: 10px;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #427A55;
+  color: #87FAAE;
 }
 
 .tfont{

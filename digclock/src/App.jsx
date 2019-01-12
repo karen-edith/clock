@@ -312,7 +312,7 @@ class App extends Component {
   render(){
     if (this.state.swMode) {
       return(
-        <div>
+        <div className='encompassing'>
           <div className="container">
             <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
             <div className='digitalwatchouter'>
@@ -327,12 +327,13 @@ class App extends Component {
             </div>
           </div>
           <div className = 'schedule'>
+            <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
               ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ='items'> {item} </div>
                 )
               }))
               :
@@ -340,7 +341,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ='items'> {item} </div>
                 )
               }))
               :
@@ -348,7 +349,7 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index}> {item} </div>
+                  <div key ={index} className ='items'> {item} </div>
                 )
               }))
               :
