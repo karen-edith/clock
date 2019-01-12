@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Button, Glyphicon} from 'react-bootstrap'
+import {Button, Glyphicon, MenuItem, DropdownButton} from 'react-bootstrap'
 
 class App extends Component {
   constructor(props){
@@ -20,8 +20,8 @@ class App extends Component {
       lzmin:'',
       lzsec:'',
       isDateOn: 'Display Date',
-      isStopWatch: 'Stop Watch',
-      swMode:false
+      swMode:false,
+      tmode: false
     }
   }
 
@@ -107,13 +107,90 @@ class App extends Component {
        }, 1000)
   }
 
+  startTimer() {
+    window.timer = setInterval(()=>{
+      let z = this.state.swsec
+      let newSec = z-1
+
+      if (z < 10) {
+        let display = '00:00:0'+ z
+        this.setState({swDisplay: display, swsec: newSec})
+      } else if ((z >= 10) && (z < 60)) {
+        let display = '00:00:'+ z
+        this.setState({swDisplay: display, swsec: newSec})
+      } else if ((z >= 60) && (z < 600)) {
+        let secs = Math.round(((z/60) - Math.floor(z/60)) * 60)
+        let min = Math.floor(z/60)
+          if (secs < 10){
+            let display = '00:0' + min + ':0' + secs
+            this.setState({swDisplay: display, swsec: newSec })
+          } else {
+            let display = '00:0' + min + ':' + secs
+            this.setState({swDisplay: display, swsec: newSec})
+          }
+      } else if ((z >= 600) && (z < 3600)) {
+          let secs = Math.round(((z/60) - Math.floor(z/60)) * 60)
+          let min = Math.floor(z/60)
+            if(secs < 10){
+              let display = '00:' + min + ':0' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            } else {
+              let display = '00:' + min + ':' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            }
+      } else if ((z >= 3600) && (z < 36000)) {
+          let minutes = ((z/60) - Math.floor(z/60)) * 60
+          let secs = (minutes/60) - Math.floor(minutes/60) * 60
+          let hrs = Math.floor(z/120)
+          if(minutes < 60) {
+            if(secs < 10){
+              let display = '0' + hrs + ':0' + minutes + ':0' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            } else {
+              let display = '0' + hrs + ':0' + minutes + ':' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            }
+          } else if (minutes >= 60) {
+            if(secs < 10){
+              let display = '0' + hrs + ':' + minutes + ':0' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            } else {
+              let display = '0' + hrs + + minutes + ':' + secs
+              this.setState({swDisplay: display, swsec: newSec})
+            }
+          }
+      } else if(z >= 36000) {
+        let minutes = ((z/60) - Math.floor(z/60)) * 60
+        let secs = (minutes/60) - Math.floor(minutes/60) * 60
+        let hrs = Math.floor(z/120)
+        if(minutes < 60) {
+          if(secs < 10){
+            let display = hrs + ':0' + minutes + ':0' + secs
+            this.setState({swDisplay: display, swsec: newSec})
+          } else {
+            let display = hrs + ':0' + minutes + ':' + secs
+            this.setState({swDisplay: display, swsec: newSec})
+          }
+        } else if (minutes >= 60) {
+          if(secs < 10){
+            let display = hrs + ':' + minutes + ':0' + secs
+            this.setState({swDisplay: display, swsec: newSec})
+          } else {
+            let display = hrs + ':' + minutes + ':' + secs
+            this.setState({swDisplay: display, swsec: newSec})
+          }
+        }
+      }
+    }, 1000)
+  }
+
   startStopWatch() {
     window.stopwatch = setInterval(()=>{
       let z = this.state.swsec
       let newSec = z+1
+
       if (z < 10) {
         let display = '00:00:0'+ z
-        console.log(display)
         this.setState({swDisplay: display, swsec: newSec})
       } else if ((z >= 10) && (z < 60)) {
         let display = '00:00:'+ z
@@ -128,10 +205,10 @@ class App extends Component {
             let display = '00:0' + min + ':' + secs
             this.setState({swDisplay: display, swsec: newSec})
           }
-      } else if ((z >= 60) && (z >= 600) && (z < 3600)) {
+      } else if ((z >= 600) && (z < 3600)) {
           let secs = ((z/60) - Math.floor(z/60)) * 60
           let min = Math.floor(z/60)
-            if(secs < 60){
+            if(secs < 10){
               let display = '00:' + min + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
@@ -143,7 +220,7 @@ class App extends Component {
           let secs = (minutes/60) - Math.floor(minutes/60) * 60
           let hrs = Math.floor(z/120)
           if(minutes < 60) {
-            if(secs < 60){
+            if(secs < 10){
               let display = '0' + hrs + ':0' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
@@ -151,7 +228,7 @@ class App extends Component {
               this.setState({swDisplay: display, swsec: newSec})
             }
           } else if (minutes >= 60) {
-            if(secs < 60){
+            if(secs < 10){
               let display = '0' + hrs + ':' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
@@ -164,7 +241,7 @@ class App extends Component {
         let secs = (minutes/60) - Math.floor(minutes/60) * 60
         let hrs = Math.floor(z/120)
         if(minutes < 60) {
-          if(secs < 60){
+          if(secs < 10){
             let display = hrs + ':0' + minutes + ':0' + secs
             this.setState({swDisplay: display, swsec: newSec})
           } else {
@@ -172,7 +249,7 @@ class App extends Component {
             this.setState({swDisplay: display, swsec: newSec})
           }
         } else if (minutes >= 60) {
-          if(secs < 60){
+          if(secs < 10){
             let display = hrs + ':' + minutes + ':0' + secs
             this.setState({swDisplay: display, swsec: newSec})
           } else {
@@ -186,7 +263,12 @@ class App extends Component {
 
   stopStopWatch() {
     clearInterval(window.stopwatch)
-    this.setState({swDisplay: '00:00:00'})
+    this.setState({swDisplay: '00:00:00', swsec: 0})
+  }
+
+  stopTimer() {
+    clearInterval(window.timer)
+    this.setState({swDisplay: '00:00:00', swsec: 0})
   }
 
 
@@ -216,46 +298,57 @@ class App extends Component {
     }
   }
 
+  handleClickTimer() {
+    this.setState({tmode:true})
+  }
+
+  switchToClock() {
+    this.setState({swMode: false, tmode:false})
+  }
+
   render(){
     if (this.state.swMode) {
       return(
-        /*<div className="container">
-          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Digital Clock </h3> </div>
+        <div className="container">
+          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
           <div className='digitalwatchouter'>
-            {
-              (this.state.isDateOn === 'Hide Date') ?
-              (
-                <div className='digitalwatchinner'>
-                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                  <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
-                </div>
-              ) :
-
-              (
-                <div className='digitalwatchinner'>
-                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                </div>
-              )
-            }
-
+            <div className='digitalwatchinner'>
+              <h3 className='time'> {this.state.swDisplay} </h3>
+            </div>
           </div>
           <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+            <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
+            <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
           </div>
-          <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
-          </div>
-        </div>*/
-        <div>
-        {this.state.swDisplay}
-        <Button onClick ={() => {this.startStopWatch()}}> Start </Button>
-        <Button onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
         </div>
       )
-    } else {
+    } else if (this.state.tmode) {
       return(
         <div className="container">
-          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Digital Clock </h3> </div>
+          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
+          <div className='digitalwatchouter'>
+            <div className='digitalwatchinner'>
+              <h3 className='time'> {this.state.swDisplay} </h3>
+            </div>
+          </div>
+          <div className='btns'>
+            <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+            <DropdownButton bsSize='large' className='tbtn' title='Select Time' key='a' id = 'b'>
+              <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
+              <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
+              <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
+              <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
+            </DropdownButton>
+            <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopTimer()}}> Stop </Button>
+          </div>
+        </div>
+      )
+
+    } else if (!this.state.swMode && !this.state.tmode){
+      return(
+        <div className="container">
+          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
           <div className='digitalwatchouter'>
             {
               (this.state.isDateOn === 'Hide Date') ?
@@ -274,12 +367,15 @@ class App extends Component {
             }
 
           </div>
-          <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
-          </div>
-          <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> {this.state.isStopWatch}</Button>
-          </div>
+            <div className='btns'>
+              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+            </div>
+            <div className='btns'>
+              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> Stop Watch </Button>
+            </div>
+            <div className='btns'>
+              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickTimer()}}> Timer </Button>
+            </div>
         </div>
       )
     }
