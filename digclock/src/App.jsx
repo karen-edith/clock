@@ -21,7 +21,10 @@ class App extends Component {
       lzsec:'',
       isDateOn: 'Display Date',
       swMode:false,
-      tmode: false
+      tmode: false,
+      monWedSched: ['Enter Room', 'Supper', 'Homework', 'Literature', 'Outdoor Time', 'Cleanup'],
+      tueThurSched: ['Enter Room', 'Supper', 'Homework', 'Enrichment', 'Cleanup'],
+      friSched: ['Enter Room', 'Outdoor Time', 'Supper', 'Homework', 'Individual Meetings with Ms. Garcia', 'Fun Friday Activities', 'outdoor Time', 'Cleanup' ]
     }
   }
 
@@ -309,74 +312,171 @@ class App extends Component {
   render(){
     if (this.state.swMode) {
       return(
-        <div className="container">
-          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
-          <div className='digitalwatchouter'>
-            <div className='digitalwatchinner'>
-              <h3 className='time'> {this.state.swDisplay} </h3>
+        <div>
+          <div className="container">
+            <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
+            <div className='digitalwatchouter'>
+              <div className='digitalwatchinner'>
+                <h3 className='time'> {this.state.swDisplay} </h3>
+              </div>
+            </div>
+            <div className='btns'>
+              <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+              <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
+              <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
             </div>
           </div>
-          <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
-            <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
-            <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
+          <div className = 'schedule'>
+            {
+              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ?
+              (this.state.monWedSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (((this.state.dayWeek === 'Tue') || (this.state.dayWeek === 'Thu'))
+              ?
+              (this.state.tueThurSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              ((this.state.dayWeek ==='Fri')
+              ?
+              (this.state.friSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (<div> Off Day </div>)))
+            }
           </div>
         </div>
+
+
       )
     } else if (this.state.tmode) {
       return(
-        <div className="container">
-          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
-          <div className='digitalwatchouter'>
-            <div className='digitalwatchinner'>
-              <h3 className='time'> {this.state.swDisplay} </h3>
+        <div>
+          <div className="container">
+            <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
+            <div className='digitalwatchouter'>
+              <div className='digitalwatchinner'>
+                <h3 className='time'> {this.state.swDisplay} </h3>
+              </div>
+            </div>
+            <div className='btns'>
+              <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+              <DropdownButton bsSize='large' className='tbtn' title='Select Time' key='a' id = 'b'>
+                <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
+                <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
+                <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
+                <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
+              </DropdownButton>
+              <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopTimer()}}> Stop </Button>
             </div>
           </div>
-          <div className='btns'>
-            <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
-            <DropdownButton bsSize='large' className='tbtn' title='Select Time' key='a' id = 'b'>
-              <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
-              <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
-              <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
-              <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
-            </DropdownButton>
-            <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopTimer()}}> Stop </Button>
+          <div className = 'schedule'>
+            {
+              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ?
+              (this.state.monWedSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (((this.state.dayWeek === 'Tue') || (this.state.dayWeek === 'Thu'))
+              ?
+              (this.state.tueThurSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              ((this.state.dayWeek ==='Fri')
+              ?
+              (this.state.friSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (<div> Off Day </div>)))
+            }
           </div>
         </div>
+
       )
 
     } else if (!this.state.swMode && !this.state.tmode){
       return(
-        <div className="container">
-          <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
-          <div className='digitalwatchouter'>
-            {
-              (this.state.isDateOn === 'Hide Date') ?
-              (
-                <div className='digitalwatchinner'>
-                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                  <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
-                </div>
-              ) :
+        <div>
+          <div className="container">
+            <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
+            <div className='digitalwatchouter'>
+              {
+                (this.state.isDateOn === 'Hide Date') ?
+                (
+                  <div className='digitalwatchinner'>
+                    <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                    <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
+                  </div>
+                ) :
 
-              (
-                <div className='digitalwatchinner'>
-                  <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                </div>
-              )
-            }
+                (
+                  <div className='digitalwatchinner'>
+                    <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                  </div>
+                )
+              }
 
+            </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
+              </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> Stop Watch </Button>
+              </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickTimer()}}> Timer </Button>
+              </div>
           </div>
-            <div className='btns'>
-              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
-            </div>
-            <div className='btns'>
-              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> Stop Watch </Button>
-            </div>
-            <div className='btns'>
-              <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickTimer()}}> Timer </Button>
-            </div>
+          <div className = 'schedule'>
+            {
+              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ?
+              (this.state.monWedSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (((this.state.dayWeek === 'Tue') || (this.state.dayWeek === 'Thu'))
+              ?
+              (this.state.tueThurSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              ((this.state.dayWeek ==='Fri')
+              ?
+              (this.state.friSched.map((item, index) => {
+                return (
+                  <div key ={index}> {item} </div>
+                )
+              }))
+              :
+              (<div> Off Day </div>)))
+            }
+          </div>
         </div>
+
       )
     }
 

@@ -1,11 +1,18 @@
-.container{
-  width: 75%;
-  margin: 0 auto;
+.container {
+  width: 65%;
   height: 100vh;
   background-color:#808080;
+  float:left;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.schedule{
+  width: 35%;
+  float: right;
+  border: 1px solid red;
+  height: 100vh;
 }
 
 .tfont{
@@ -63,7 +70,6 @@
 .btns{
   text-align: center;
   margin: 0 auto;
-  display: inline-block;
 
 }
 
