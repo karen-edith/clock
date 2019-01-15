@@ -308,12 +308,95 @@ class App extends Component {
     this.setState({swMode: false, tmode:false})
   }
 
-  itemColor() {
-    if((this.state.hrs >= 12) && (this.state.hrs < 14)){
-      return ('items2')
-    } else {
-      return ('items1')
-    }
+  itemColor(block) {
+    if ((this.state.dayWeek === 'Mon' )|| (this.state.dayWeek === 'Wed')) {
+      if((this.state.hrs === 16) && (this.state.min < 15)){
+        if(block === 'Enter Room'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 16 && this.state.min >= 15 && this.state.min < 30 ) {
+        if (block === 'Supper'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 16 && this.state.min >= 30 && this.state.min <=59 ) {
+        if (block === 'Homework') {
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 17 && this.state.min >= 0 && this.state.min <30) {
+        if (block === 'Literature'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 17 && this.state.min >= 30 && this.state.min <=59) {
+        if (block === 'Outdoor Time'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 23 && this.state.min >=0) {
+        if (block === 'Cleanup'){
+          return 'items2'
+        } else return 'items1'
+      } else return 'items1'
+    } else if (this.state.dayWeek === 'Tue' || this.state.dayWeek === 'Thu'){
+      if(this.state.hrs === 16 && this.state.min < 15){
+        if(block === 'Enter Room'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 16 && this.state.min >= 15 && this.state.min < 30 ) {
+        if (block === 'Supper'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 16 && this.state.min >= 30 && this.state.min <=59 ) {
+        if (block === 'Homework') {
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 17 && this.state.min >=0 && this.state.min <=59){
+        if (block === 'Enrichment'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 18 && this.state.min >=0) {
+        if (block === 'Cleanup'){
+          return 'items2'
+        } else return 'items1'
+      } else return 'items1'
+    } else if ((this.state.dayWeek === 'Fri')) {
+      if((this.state.hrs === 13) && (this.state.min >=45) &&(this.state.min <=59)){
+        if(block === 'Enter Room'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 14 && this.state.min < 30 ) {
+        if (block === 'Outdoor Time'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 14 && this.state.min >= 30 && this.state.min <=59 ) {
+        if (block === 'Supper') {
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 15 && this.state.min >= 0 && this.state.min <30) {
+        if (block === 'Homework'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 15 && this.state.min >= 30 && this.state.min <=59) {
+        if (block === 'Individual Meetings with Ms. Garcia'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 16 && this.state.min >=0 && this.state.min <=59) {
+        if (block === 'Fun Friday Activities'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 17 && this.state.min >=0 && this.state.min <30) {
+        if (block === 'Fun Friday Activities'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 17 && this.state.min >=30 && this.state.min <=59) {
+        if (block === 'Outdoor Time'){
+          return 'items2'
+        } else return 'items1'
+      } else if (this.state.hrs === 18 && this.state.min >=0) {
+        if (block === 'Cleanup'){
+          return 'items2'
+        } else return 'items1'
+      }else return 'items1'
+    } else return 'items1'
+
   }
 
   render(){
@@ -336,11 +419,11 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -348,7 +431,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -356,7 +439,7 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -391,11 +474,11 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -403,7 +486,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -411,7 +494,7 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -458,11 +541,12 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Sat') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
+
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -470,7 +554,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
@@ -478,7 +562,7 @@ class App extends Component {
               ?
               (this.state.friSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor()}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
                 )
               }))
               :
