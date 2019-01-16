@@ -19,7 +19,6 @@ class App extends Component {
       lzhrs: '',
       lzmin:'',
       lzsec:'',
-      isDateOn: 'Display Date',
       swMode:false,
       tmode: false,
       monWedSched: ['Enter Room', 'Supper', 'Homework', 'Literature', 'Outdoor Time', 'Cleanup'],
@@ -330,7 +329,7 @@ class App extends Component {
         if (block === 'Outdoor Time'){
           return 'items2'
         } else return 'items1'
-      } else if (this.state.hrs === 23 && this.state.min >=0) {
+      } else if (this.state.hrs === 1 && this.state.min >=0) {
         if (block === 'Cleanup'){
           return 'items2'
         } else return 'items1'
@@ -511,31 +510,18 @@ class App extends Component {
           <div className="container">
             <div className='title'> <h3 className='tfont'> <Glyphicon glyph='time'/> Ms. Garcia's Digital Clock </h3> </div>
             <div className='digitalwatchouter'>
-              {
-                (this.state.isDateOn === 'Hide Date') ?
-                (
-                  <div className='digitalwatchinner'>
-                    <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                    <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
-                  </div>
-                ) :
-
-                (
-                  <div className='digitalwatchinner'>
-                    <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
-                  </div>
-                )
-              }
-
+              <div className='digitalwatchinner'>
+                <h3 className='time'> {this.state.lzhrs}{this.state.hrs}:{this.state.lzmin}{this.state.min}:{this.state.lzsec}{this.state.sec} </h3>
+                <h3 className='date'> {this.state.dayWeek} {this.state.month} {this.state.day} {this.state.year}</h3>
+              </div>
             </div>
-              <div className='btns'>
-                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClick()}}> {this.state.isDateOn}</Button>
-              </div>
-              <div className='btns'>
-                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> Stop Watch </Button>
-              </div>
-              <div className='btns'>
-                <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickTimer()}}> Timer </Button>
+              <div className = 'btns-container'>
+                <div className='btns'>
+                  <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickStopWatch()}}> Stop Watch </Button>
+                </div>
+                <div className='btns'>
+                  <Button bsSize='large' className='tbtn' onClick={()=>{this.handleClickTimer()}}> Timer </Button>
+                </div>
               </div>
           </div>
           <div className = 'schedule'>

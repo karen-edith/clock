@@ -111,10 +111,19 @@
   color: #87FAAE;
 }
 
+.btns-container{
+  margin:0 auto;
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .btns{
   text-align: center;
   margin: 0 auto;
-
+  margin-right: 7px;
+  display: inline-block;
+  width:75%;
 }
 
 .tbtn{
@@ -123,6 +132,8 @@
   border: 1px solid #417378;
   color: white;
   border-radius: 30px;
+  display: inline-block;
+  width: 100%;
 }
 
 .tbtn:hover, .tbtn:active{
