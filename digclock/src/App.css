@@ -114,7 +114,6 @@
 .btns-container{
   margin:0 auto;
   width: 100%;
-  margin: 0 auto;
   text-align: center;
 }
 
@@ -124,6 +123,7 @@
   margin-right: 7px;
   display: inline-block;
   width:75%;
+  border: 1px solid red;
 }
 
 .tbtn{
@@ -136,7 +136,18 @@
   width: 100%;
 }
 
-.tbtn:hover, .tbtn:active{
+
+.ddbtn{
+  border-radius: 30px !important;
+  margin-top: 20px;
+  background-color: #417378;
+  border: 1px solid #417378;
+  color: white;
+  display: inline-block;
+  text-align: center;
+}
+
+.tbtn:hover, .tbtn:active, .ddbtn:hover, .ddbtn:active{
   background-color: #A4CFBE;
   border: 1px solid #A4CFBE;
   color:black;

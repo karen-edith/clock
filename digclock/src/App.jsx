@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Button, Glyphicon, MenuItem, DropdownButton} from 'react-bootstrap'
+import {Button, Glyphicon, MenuItem, DropdownButton, ButtonGroup} from 'react-bootstrap'
 
 class App extends Component {
   constructor(props){
@@ -273,16 +273,9 @@ class App extends Component {
   }
 
   handleClickStopWatch() {
-    console.log('Lion King')
     if(this.state.swMode){
-      this.setState({
-        swMode: false
-      })
-    } else {
-      this.setState({
-        swMode: true
-      })
-    }
+      this.setState({ swMode: false })
+    } else { this.setState({ swMode: true }) }
   }
 
   handleClickTimer() {
@@ -395,10 +388,16 @@ class App extends Component {
                 <h3 className='time'> {this.state.swDisplay} </h3>
               </div>
             </div>
-            <div className='btns'>
-              <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
-              <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
-              <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
+            <div className = 'btns-container'>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+              </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
+              </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
+              </div>
             </div>
           </div>
           <div className = 'schedule'>
@@ -445,15 +444,24 @@ class App extends Component {
                 <h3 className='time'> {this.state.swDisplay} </h3>
               </div>
             </div>
-            <div className='btns'>
-              <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
-              <DropdownButton bsSize='large' className='tbtn' title='Select Time' key='a' id = 'b'>
-                <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
-                <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
-                <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
-                <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
-              </DropdownButton>
-              <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopTimer()}}> Stop </Button>
+
+            <div className = 'btns-container'>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
+              </div>
+              <div className='btns'>
+                <ButtonGroup justified>
+                  <DropdownButton bsSize='large' className='ddbtn' title='Select Time' key='a' id = 'b'>
+                    <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
+                  </DropdownButton>
+                </ButtonGroup>
+              </div>
+              <div className='btns'>
+                <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopTimer()}}> Stop </Button>
+              </div>
             </div>
           </div>
           <div className = 'schedule'>
