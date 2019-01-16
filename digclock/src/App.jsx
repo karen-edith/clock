@@ -272,29 +272,15 @@ class App extends Component {
     this.setState({swDisplay: '00:00:00', swsec: 0})
   }
 
-
-  handleClick(){
-    if(this.state.isDateOn === 'Display Date'){
-      this.setState({
-        isDateOn: 'Hide Date'
-      })
-    } else {
-      this.setState({
-        isDateOn: 'Display Date'
-      })
-    }
-  }
-
   handleClickStopWatch() {
-    if(this.state.isStopWatch === 'Stop Watch'){
+    console.log('Lion King')
+    if(this.state.swMode){
       this.setState({
-        isStopWatch: 'Hide Stop Watch',
-        swMode: true
+        swMode: false
       })
     } else {
       this.setState({
-        isStopWatch: 'Stop Watch',
-        swMode: false
+        swMode: true
       })
     }
   }
