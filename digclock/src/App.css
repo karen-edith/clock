@@ -123,7 +123,6 @@
   margin-right: 7px;
   display: inline-block;
   width:75%;
-  border: 1px solid red;
 }
 
 .tbtn{
@@ -145,18 +144,23 @@
   color: white;
   display: inline-block;
   text-align: center;
+  outline: none;
+  box-shadow: none;
 }
 
 .tbtn:hover, .tbtn:active, .ddbtn:hover, .ddbtn:active{
-  background-color: #A4CFBE;
-  border: 1px solid #A4CFBE;
+  background-color: #83a598;
+  border: 1px solid #83a598;
   color:black;
+  outline: none;
+  box-shadow: none;
 }
 
 .tbtn:focus{
   margin-top: 20px;
-  background-color: #417378;
-  border: 1px solid #417378;
-  color: white;
+  background-color: #c8e2d8;
+  border: 1px solid #c8e2d8;
+  color: black;
   border-radius: 30px;
+  outline:none;
 }
