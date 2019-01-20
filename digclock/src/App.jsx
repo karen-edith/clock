@@ -20,7 +20,9 @@ class App extends Component {
       lzmin:'',
       lzsec:'',
       swMode:false,
+      swCounter:0,
       tmode: false,
+      tCounter:0,
       monWedSched: ['Enter Room', 'Supper', 'Homework', 'Literature', 'Outdoor Time', 'Cleanup'],
       tueThurSched: ['Enter Room', 'Supper', 'Homework', 'Enrichment', 'Cleanup'],
       friSched: ['Enter Room', 'Outdoor Time', 'Supper', 'Homework', 'Individual Meetings with Ms. Garcia', 'Fun Friday Activities', 'outdoor Time', 'Cleanup' ]
@@ -109,167 +111,179 @@ class App extends Component {
   }
 
   startTimer() {
-    window.timer = setInterval(()=>{
-      let z = this.state.swsec
-      let newSec = z-1
+    console.log(this.state.tCounter)
+    if (this.state.tCounter === 0){
+      window.timer = setInterval(()=>{
+        let z = this.state.swsec
+        let newSec = z-1
 
-      if (z < 10) {
-        let display = '00:00:0'+ z
-        this.setState({swDisplay: display, swsec: newSec})
-      } else if ((z >= 10) && (z < 60)) {
-        let display = '00:00:'+ z
-        this.setState({swDisplay: display, swsec: newSec})
-      } else if ((z >= 60) && (z < 600)) {
-        let secs = Math.round(((z/60) - Math.floor(z/60)) * 60)
-        let min = Math.floor(z/60)
-          if (secs < 10){
-            let display = '00:0' + min + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec })
-          } else {
-            let display = '00:0' + min + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
-      } else if ((z >= 600) && (z < 3600)) {
+        if (z === 0){
+          clearInterval(window.timer)
+          this.setState({swDisplay: '00:00:00', tCounter: 0})
+        }
+
+        if (z < 10) {
+          let display = '00:00:0'+ z
+          this.setState({swDisplay: display, swsec: newSec})
+        } else if ((z >= 10) && (z < 60)) {
+          let display = '00:00:'+ z
+          this.setState({swDisplay: display, swsec: newSec})
+        } else if ((z >= 60) && (z < 600)) {
           let secs = Math.round(((z/60) - Math.floor(z/60)) * 60)
           let min = Math.floor(z/60)
-            if(secs < 10){
-              let display = '00:' + min + ':0' + secs
-              this.setState({swDisplay: display, swsec: newSec})
+            if (secs < 10){
+              let display = '00:0' + min + ':0' + secs
+              this.setState({swDisplay: display, swsec: newSec })
             } else {
-              let display = '00:' + min + ':' + secs
+              let display = '00:0' + min + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
-      } else if ((z >= 3600) && (z < 36000)) {
+        } else if ((z >= 600) && (z < 3600)) {
+            let secs = Math.round(((z/60) - Math.floor(z/60)) * 60)
+            let min = Math.floor(z/60)
+              if(secs < 10){
+                let display = '00:' + min + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '00:' + min + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+        } else if ((z >= 3600) && (z < 36000)) {
+            let minutes = ((z/60) - Math.floor(z/60)) * 60
+            let secs = (minutes/60) - Math.floor(minutes/60) * 60
+            let hrs = Math.floor(z/120)
+            if(minutes < 60) {
+              if(secs < 10){
+                let display = '0' + hrs + ':0' + minutes + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '0' + hrs + ':0' + minutes + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+            } else if (minutes >= 60) {
+              if(secs < 10){
+                let display = '0' + hrs + ':' + minutes + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '0' + hrs + + minutes + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+            }
+        } else if(z >= 36000) {
           let minutes = ((z/60) - Math.floor(z/60)) * 60
           let secs = (minutes/60) - Math.floor(minutes/60) * 60
           let hrs = Math.floor(z/120)
           if(minutes < 60) {
             if(secs < 10){
-              let display = '0' + hrs + ':0' + minutes + ':0' + secs
+              let display = hrs + ':0' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
-              let display = '0' + hrs + ':0' + minutes + ':' + secs
+              let display = hrs + ':0' + minutes + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
           } else if (minutes >= 60) {
             if(secs < 10){
-              let display = '0' + hrs + ':' + minutes + ':0' + secs
+              let display = hrs + ':' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
-              let display = '0' + hrs + + minutes + ':' + secs
+              let display = hrs + ':' + minutes + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
           }
-      } else if(z >= 36000) {
-        let minutes = ((z/60) - Math.floor(z/60)) * 60
-        let secs = (minutes/60) - Math.floor(minutes/60) * 60
-        let hrs = Math.floor(z/120)
-        if(minutes < 60) {
-          if(secs < 10){
-            let display = hrs + ':0' + minutes + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          } else {
-            let display = hrs + ':0' + minutes + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
-        } else if (minutes >= 60) {
-          if(secs < 10){
-            let display = hrs + ':' + minutes + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          } else {
-            let display = hrs + ':' + minutes + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
         }
-      }
-    }, 1000)
+      }, 1000)
+    }
   }
 
   startStopWatch() {
-    window.stopwatch = setInterval(()=>{
-      let z = this.state.swsec
-      let newSec = z+1
-
-      if (z < 10) {
-        let display = '00:00:0'+ z
-        this.setState({swDisplay: display, swsec: newSec})
-      } else if ((z >= 10) && (z < 60)) {
-        let display = '00:00:'+ z
-        this.setState({swDisplay: display, swsec: newSec})
-      } else if ((z >= 60) && (z < 600)) {
-        let secs = ((z/60) - Math.floor(z/60)) * 60
-        let min = Math.floor(z/60)
-          if (secs < 10){
-            let display = '00:0' + min + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec })
-          } else {
-            let display = '00:0' + min + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
-      } else if ((z >= 600) && (z < 3600)) {
+    console.log(this.state.swCounter)
+    if (this.state.swCounter === 0){
+      window.stopwatch = setInterval(()=>{
+        let z = this.state.swsec
+        let newSec = z+1
+        if (z < 10) {
+          let display = '00:00:0'+ z
+          this.setState({swDisplay: display, swsec: newSec})
+        } else if ((z >= 10) && (z < 60)) {
+          let display = '00:00:'+ z
+          this.setState({swDisplay: display, swsec: newSec})
+        } else if ((z >= 60) && (z < 600)) {
           let secs = ((z/60) - Math.floor(z/60)) * 60
           let min = Math.floor(z/60)
-            if(secs < 10){
-              let display = '00:' + min + ':0' + secs
-              this.setState({swDisplay: display, swsec: newSec})
+            if (secs < 10){
+              let display = '00:0' + min + ':0' + secs
+              this.setState({swDisplay: display, swsec: newSec })
             } else {
-              let display = '00:' + min + ':' + secs
+              let display = '00:0' + min + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
-      } else if ((z >= 3600) && (z < 36000)) {
+        } else if ((z >= 600) && (z < 3600)) {
+            let secs = ((z/60) - Math.floor(z/60)) * 60
+            let min = Math.floor(z/60)
+              if(secs < 10){
+                let display = '00:' + min + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '00:' + min + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+        } else if ((z >= 3600) && (z < 36000)) {
+            let minutes = ((z/60) - Math.floor(z/60)) * 60
+            let secs = (minutes/60) - Math.floor(minutes/60) * 60
+            let hrs = Math.floor(z/120)
+            if(minutes < 60) {
+              if(secs < 10){
+                let display = '0' + hrs + ':0' + minutes + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '0' + hrs + ':0' + minutes + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+            } else if (minutes >= 60) {
+              if(secs < 10){
+                let display = '0' + hrs + ':' + minutes + ':0' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              } else {
+                let display = '0' + hrs + + minutes + ':' + secs
+                this.setState({swDisplay: display, swsec: newSec})
+              }
+            }
+        } else if(z >= 36000) {
           let minutes = ((z/60) - Math.floor(z/60)) * 60
           let secs = (minutes/60) - Math.floor(minutes/60) * 60
           let hrs = Math.floor(z/120)
           if(minutes < 60) {
             if(secs < 10){
-              let display = '0' + hrs + ':0' + minutes + ':0' + secs
+              let display = hrs + ':0' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
-              let display = '0' + hrs + ':0' + minutes + ':' + secs
+              let display = hrs + ':0' + minutes + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
           } else if (minutes >= 60) {
             if(secs < 10){
-              let display = '0' + hrs + ':' + minutes + ':0' + secs
+              let display = hrs + ':' + minutes + ':0' + secs
               this.setState({swDisplay: display, swsec: newSec})
             } else {
-              let display = '0' + hrs + + minutes + ':' + secs
+              let display = hrs + ':' + minutes + ':' + secs
               this.setState({swDisplay: display, swsec: newSec})
             }
           }
-      } else if(z >= 36000) {
-        let minutes = ((z/60) - Math.floor(z/60)) * 60
-        let secs = (minutes/60) - Math.floor(minutes/60) * 60
-        let hrs = Math.floor(z/120)
-        if(minutes < 60) {
-          if(secs < 10){
-            let display = hrs + ':0' + minutes + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          } else {
-            let display = hrs + ':0' + minutes + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
-        } else if (minutes >= 60) {
-          if(secs < 10){
-            let display = hrs + ':' + minutes + ':0' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          } else {
-            let display = hrs + ':' + minutes + ':' + secs
-            this.setState({swDisplay: display, swsec: newSec})
-          }
         }
-      }
-    }, 1000)
+
+      }, 1000)
+    }
+
   }
 
   stopStopWatch() {
     clearInterval(window.stopwatch)
-    this.setState({swDisplay: '00:00:00', swsec: 0})
+    this.setState({swDisplay: '00:00:00', swsec: 0, swCounter:0})
   }
 
   stopTimer() {
     clearInterval(window.timer)
-    this.setState({swDisplay: '00:00:00', swsec: 0})
+    this.setState({swDisplay: '00:00:00', swsec: 0, tCounter:0})
   }
 
   handleClickStopWatch() {
@@ -393,7 +407,7 @@ class App extends Component {
                 <Button bsSize='large' className='tbtn' onClick={()=>{this.switchToClock()}}> Clock </Button>
               </div>
               <div className='btns'>
-                <Button bsSize='large' className='tbtn' onClick ={() => {this.startStopWatch()}}> Start </Button>
+                <Button bsSize='large' className='tbtn' onClick ={() => {this.setState({swCounter: 1}); this.startStopWatch()}}> Start </Button>
               </div>
               <div className='btns'>
                 <Button bsSize='large' className='tbtn' onClick = {() =>{this.stopStopWatch()}}> Stop </Button>
@@ -452,10 +466,10 @@ class App extends Component {
               <div className='btns'>
                 <ButtonGroup justified>
                   <DropdownButton bsSize='large' className='ddbtn' title='Select Time' key='a' id = 'b'>
-                    <MenuItem onClick={() => {this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
-                    <MenuItem onClick={() => {this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
-                    <MenuItem onClick={() => {this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
-                    <MenuItem onClick={() => {this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({tCounter: 1}); this.setState({swsec:180}); this.startTimer()}} eventKey="1">3 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({tCounter: 1}); this.setState({swsec:300}); this.startTimer()}} eventKey="2">5 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({tCounter: 1}); this.setState({swsec:600}); this.startTimer()}} eventKey="3">10 minutes</MenuItem>
+                    <MenuItem onClick={() => {this.setState({tCounter: 1}); this.setState({swsec:900}); this.startTimer()}} eventKey="4">15 minutes</MenuItem>
                   </DropdownButton>
                 </ButtonGroup>
               </div>

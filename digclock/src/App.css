@@ -152,15 +152,21 @@
   background-color: #83a598;
   border: 1px solid #83a598;
   color:black;
-  outline: none;
-  box-shadow: none;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.tbtn:focus{
+/*.tbtn:focus, .ddbtn:focus{
   margin-top: 20px;
   background-color: #c8e2d8;
   border: 1px solid #c8e2d8;
   color: black;
   border-radius: 30px;
   outline:none;
+}*/
+
+.tbtn:focus, .ddbtn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background-color: #c8e2d8;
 }
