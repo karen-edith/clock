@@ -54,7 +54,7 @@ class App extends Component {
     d[6] = "Sat";
     d[0] = "Sun";
 
-    setInterval( () => {
+    window.clock = setInterval( () => {
       let currentTime = new Date();
       let mon = currentTime.getMonth();
       let dweek = currentTime.getDay();
@@ -323,7 +323,7 @@ class App extends Component {
         if (block === 'Outdoor Time'){
           return 'items2'
         } else return 'items1'
-      } else if (this.state.hrs === 1 && this.state.min >=0) {
+      } else if (this.state.hrs === 18 && this.state.min >=0) {
         if (block === 'Cleanup'){
           return 'items2'
         } else return 'items1'
@@ -392,7 +392,7 @@ class App extends Component {
 
   }
 
-  /*chooseLink(item){
+  chooseLink(item){
     if (item === 'Enter Room') {
       return ('/enter')
     } else if (item === 'Supper') {
@@ -406,7 +406,7 @@ class App extends Component {
     } else if (item === 'Literature') {
       return ('/enter')
     }
-  }*/
+  }
 
   render(){
     if (this.state.swMode) {
@@ -556,7 +556,7 @@ class App extends Component {
               (this.state.monWedSched.map((item, index) => {
 
                 return (
-                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)} onClick = {() => {clearInterval(window.clock)}}> <Link to={'/' + item.replace(/\s+/g, '')} > {item} </Link></div>
                 )
               }))
               :

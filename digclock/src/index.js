@@ -9,7 +9,7 @@ ReactDOM.render(
     <BrowserRouter>
       <div>
         <Route exact path='/' component={App}/>
-        <Route path='/enter' component={Enter}/>
+        <Route path='/EnterRoom' component={Enter}/>
       </div>
     </BrowserRouter>
   , document.getElementById('root'));
