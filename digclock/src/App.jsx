@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
-import {Button, Glyphicon, MenuItem, DropdownButton, ButtonGroup} from 'react-bootstrap'
+import {Button, Glyphicon, MenuItem, DropdownButton, ButtonGroup} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class App extends Component {
   constructor(props){
@@ -51,7 +52,7 @@ class App extends Component {
     d[4] = "Thu";
     d[5] = "Fri";
     d[6] = "Sat";
-    d[7] = "Sun";
+    d[0] = "Sun";
 
     setInterval( () => {
       let currentTime = new Date();
@@ -301,7 +302,7 @@ class App extends Component {
   }
 
   itemColor(block) {
-    if ((this.state.dayWeek === 'Mon' )|| (this.state.dayWeek === 'Wed')) {
+    if ((this.state.dayWeek === 'Sun' )|| (this.state.dayWeek === 'Wed')) {
       if((this.state.hrs === 16) && (this.state.min < 15)){
         if(block === 'Enter Room'){
           return 'items2'
@@ -390,6 +391,22 @@ class App extends Component {
     } else return 'items1'
 
   }
+
+  /*chooseLink(item){
+    if (item === 'Enter Room') {
+      return ('/enter')
+    } else if (item === 'Supper') {
+      return ('/enter')
+    } else if (item === 'Homework') {
+      return ('/enter')
+    } else if (item ==='Outdoor Time') {
+      return ('/enter')
+    } else if (item === 'Enrichment') {
+      return ('/enter')
+    } else if (item === 'Literature') {
+      return ('/enter')
+    }
+  }*/
 
   render(){
     if (this.state.swMode) {
@@ -481,7 +498,7 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Sun') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
                 return (
@@ -511,7 +528,6 @@ class App extends Component {
         </div>
 
       )
-
     } else if (!this.state.swMode && !this.state.tmode){
       return(
         <div>
@@ -535,7 +551,7 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Sun') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
 
