@@ -43,7 +43,6 @@
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: #427A55;
-  color: #87FAAE;
 }
 
 .items2 {
@@ -56,7 +55,15 @@
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: #264732;
+}
+
+.linkColor{
+  text-decoration: none;
   color: #87FAAE;
+}
+
+.linkColor:hover, .linkColor:active, .linkColor:focus{
+  text-decoration: none;
 }
 
 .tfont{

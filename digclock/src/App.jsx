@@ -556,7 +556,7 @@ class App extends Component {
               (this.state.monWedSched.map((item, index) => {
 
                 return (
-                  <div key ={index} className ={this.itemColor(item)} onClick = {() => {clearInterval(window.clock)}}> <Link to={'/' + item.replace(/\s+/g, '')} > {item} </Link></div>
+                  <div key ={index} className ={this.itemColor(item)} onClick = {() => {clearInterval(window.clock)}}> <Link className = 'linkColor' to={'/' + item.replace(/\s+/g, '')} > {item} </Link></div>
                 )
               }))
               :
