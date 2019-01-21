@@ -302,7 +302,7 @@ class App extends Component {
   }
 
   itemColor(block) {
-    if ((this.state.dayWeek === 'Sun' )|| (this.state.dayWeek === 'Wed')) {
+    if ((this.state.dayWeek === 'Mon' )|| (this.state.dayWeek === 'Wed')) {
       if((this.state.hrs === 16) && (this.state.min < 15)){
         if(block === 'Enter Room'){
           return 'items2'
@@ -551,7 +551,7 @@ class App extends Component {
           <div className = 'schedule'>
             <div className = 'scheduleTitle'> <h2>Today's Schedule</h2> </div>
             {
-              ((this.state.dayWeek === 'Sun') || (this.state.dayWeek === 'Wed'))
+              ((this.state.dayWeek === 'Mon') || (this.state.dayWeek === 'Wed'))
               ?
               (this.state.monWedSched.map((item, index) => {
 
