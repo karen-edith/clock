@@ -564,7 +564,7 @@ class App extends Component {
               ?
               (this.state.tueThurSched.map((item, index) => {
                 return (
-                  <div key ={index} className ={this.itemColor(item)}> {item} </div>
+                  <div key ={index} className ={this.itemColor(item)}> <Link className = 'linkColor' to={'/' + item.replace(/\s+/g, '')} > {item} </Link> </div>
                 )
               }))
               :
