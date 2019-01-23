@@ -11,7 +11,7 @@ class Expectations extends Component {
             {
               this.props.expectations.map((item, index) => {
                 return (
-                  <div key = {index+'A'} className = 'rule'>
+                  <div key = {index} className = 'rule'>
                     <div className = 'handglyph'> <Glyphicon glyph = 'hand-right'/> </div>
                     <div className ='rle'> {item} </div>
                   </div>
