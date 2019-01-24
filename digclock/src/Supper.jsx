@@ -8,20 +8,21 @@ class Supper extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      expTitle: 'Supper Expectations',
+      expTitle: 'Supper Block Expectations',
       expectations: [
-        'Line up outside in a straight line - track forward with voice at a level 1',
-        'Take out homework, book, or grab art/crafts supplies from bin ',
-        'Put Backpack away on Rack',
-        'Have a seat and work on selected option and keep voice at a level 1',
-        'For announcements, track Ms. Garcia when she requests your attention with an attention getter',
-        'Once You are done with your Job, Let Ms. Garcia know and have a seat',
-        'Everyon one else should have a seat'
+        'Line up in a straight line - that means tracking forward, no pushing, no pulling, no play fighting, and keep voice at a level 1',
+        'Walk down to MPR in a straight line while keeping voice at a level 1 or level 0',
+        'Walk into MPR at a level 0-1 and go around tables to get supper, once you get supper sit at our designated table',
+        'if you need to get out of your seat, raise your hand before you get up',
+        'Track and follow instructions of team leader conducting MPR Dismissal',
+        'When dismissed, pick up all of your trash (including trash on near you on the floor)',
+        'When going back to class from MPR, line up in a straight line - that means tracking forward, no pushing, no pulling, no play fighting, and keep voice at a level 0-1',
+        'Walk, do not run back up to class and follow Ms. Garcia"s instructions'
      ],
-     studentNames1:['Nellie', 'Joshua', 'Reizo', 'Julio'],
-     studentNames2:['Jeihser', 'Alyssa', 'Dominic','Allison'],
-     roles1: ['Line Leader', 'Sign-In Manager', 'Backpack Manger', 'Projector Assistant'],
-     roles2: ['Attendance Assistant', 'Laptop Setup Assistant', 'Backpack Manager', 'Timer Assistant']
+     studentNames:['Nellie', 'Gabriela', 'Alyssa', 'Angelica', 'Brianna', 'Ashley'],
+     //studentNames2:['Brianna', 'Ashley'],
+     roles: ['Line Leader', 'Door Holder', 'Key Holder', 'Dismissal Attention Getter', 'Dismissal Assitant', 'Binder Manager']
+     //roles2: ['Dismissal Assitant', 'Binder Manager']
     }
   }
 
@@ -30,10 +31,8 @@ class Supper extends Component {
       <Expectations
       expTitle = {this.state.expTitle}
       expectations = {this.state.expectations}
-      studentNames1 = {this.state.studentNames1}
-      studentNames2 = {this.state.studentNames2}
-      roles1 = {this.state.roles1}
-      roles2 = {this.state.roles2}
+      studentNames = {this.state.studentNames}
+      roles = {this.state.roles}
       />
     )
 

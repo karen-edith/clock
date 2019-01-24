@@ -103,12 +103,21 @@ width: 100%;
   color: #203B29;
 }
 
+.jobBox{
+  width: 93%;
+  margin: 0 auto;
+  text-align: center;
+}
+
 .jobrow {
-  width: 90%;
+  width: 48%;
   margin: 0 auto;
   text-align: center;
   color: #203B29;
   border-bottom: 5px dotted #203B29;
+  display: inline-block;
+  margin-right: 4px;
+  margin-bottom: 10px;
 }
 
 .titl{

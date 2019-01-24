@@ -25,27 +25,38 @@ class Expectations extends Component {
           </div>
           <div className = 'jobs'>
             <div className = 'jobsTitle'> Block Scholar Jobs </div>
-            {
-              this.props.roles1.map((item, index) => {
-                  if(index < this.props.roles2.length-1){
+            <div className = 'jobBox'>
+              {
+              this.props.roles.map((item, index) => {
+                var length
+                if (this.props.roles.length % 2 === 0){
+                  length = this.props.roles.length-2
+                } else { length = this.props.roles.length-1}
+
+                  if(index < length){
                     return (
                       <div className = 'jobrow'>
-                        <div className ='titl'> <div className = 'jtitle1'> {item} </div> <div className='jtitle2'> {this.props.roles2[index]}</div></div>
-                        <div className ='studentImage'> <img className = 'image' src = {require('./sbob.jpg')} alt =''/> <div className ='studentName'> {this.props.studentNames1[index]}</div> </div>
-                        <div className ='studentImage'> <img className = 'image' src = {require('./sbob.jpg')} alt =''/> <div className ='studentName'> {this.props.studentNames2[index]} </div> </div>
+                        <div className ='titl'> {item} </div>
+                        <div className ='studentImage'>
+                          <img className = 'image' src = {require('./sbob.jpg')} alt =''/>
+                          <div className ='studentName'> {this.props.studentNames[index]}</div>
+                        </div>
                       </div>
                     )
                   } else {
                     return (
                       <div className = 'jobrow nobottomborder'>
-                        <div className ='titl'> <div className = 'jtitle1'> {item} </div> <div className='jtitle2'> {this.props.roles2[index]}</div></div>
-                        <div className ='studentImage'> <img className = 'image' src = {require('./sbob.jpg')} alt =''/> <div className ='studentName'> {this.props.studentNames1[index]}</div> </div>
-                        <div className ='studentImage'> <img className = 'image' src = {require('./sbob.jpg')} alt =''/> <div className ='studentName'> {this.props.studentNames2[index]} </div> </div>
+                        <div className ='titl'> {item} </div>
+                        <div className ='studentImage'>
+                          <img className = 'image' src = {require('./sbob.jpg')} alt =''/>
+                          <div className ='studentName'> {this.props.studentNames[index]}</div>
+                        </div>
                       </div>
                     )
                   }
               })
             }
+            </div>
           </div>
         </div>
     )

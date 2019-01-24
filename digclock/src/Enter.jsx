@@ -18,10 +18,8 @@ class Enter extends Component {
         'Once You are done with your Job, Let Ms. Garcia know and have a seat',
         'Everyon one else should have a seat'
      ],
-     studentNames1:['Nellie', 'Joshua', 'Reizo', 'Julio'],
-     studentNames2:['Jeihser', 'Alyssa', 'Dominic','Allison'],
-     roles1: ['Line Leader', 'Sign-In Manager', 'Backpack Manger', 'Projector Assistant'],
-     roles2: ['Attendance Assistant', 'Laptop Setup Assistant', 'Backpack Manager', 'Timer Assistant']
+     studentNames:['Nellie', 'Joshua', 'Reizo', 'Julio', 'Jeihser', 'Alyssa', 'Dominic','Allison'],
+     roles: ['Line Leader', 'Sign-In Manager', 'Backpack Manger', 'Projector Assistant', 'Attendance Assistant', 'Laptop Setup Assistant', 'Backpack Manager', 'Timer Assistant']
     }
   }
 
@@ -30,10 +28,8 @@ class Enter extends Component {
       <Expectations
       expTitle = {this.state.expTitle}
       expectations = {this.state.expectations}
-      studentNames1 = {this.state.studentNames1}
-      studentNames2 = {this.state.studentNames2}
-      roles1 = {this.state.roles1}
-      roles2 = {this.state.roles2}
+      studentNames = {this.state.studentNames}
+      roles = {this.state.roles}
       />
     )
 
