@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './Enter.css';
-import { Link } from 'react-router-dom';
 import Expectations from './Expectations.jsx'
 
 class Supper extends Component {
