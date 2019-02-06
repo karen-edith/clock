@@ -7,6 +7,8 @@ import Homework from './Homework';
 import Literature from './Literature';
 import Outdoor from './Outdoor';
 import Enrichment from './Enrichment';
+import Meetings from './Meetings';
+import Cleanup from './Cleanup';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route} from 'react-router-dom';
 
@@ -20,6 +22,8 @@ ReactDOM.render(
         <Route path='/Literature' component={Literature}/>
         <Route path='/OutdoorTime' component={Outdoor}/>
         <Route path='/Enrichment' component={Enrichment}/>
+        <Route path='/Cleanup' component={Cleanup}/>
+        <Route path='/IndividualMeetings' component={Meetings}/>
       </div>
     </BrowserRouter>
   , document.getElementById('root'));

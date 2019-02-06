@@ -368,7 +368,7 @@ class App extends Component {
           return 'items2'
         } else return 'items1'
       } else if (this.state.hrs === 15 && this.state.min >= 30 && this.state.min <=59) {
-        if (block === 'Individual Meetings with Ms. Garcia'){
+        if (block === 'Individual Meetings'){
           return 'items2'
         } else return 'items1'
       } else if (this.state.hrs === 16 && this.state.min >=0 && this.state.min <=59) {

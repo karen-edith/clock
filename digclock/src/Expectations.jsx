@@ -24,7 +24,7 @@ class Expectations extends Component {
             </div>
           </div>
           <div className = 'jobs'>
-            <div className = 'jobsTitle'> Block Scholar Jobs </div>
+            <div className = 'jobsTitle'> Scholar Jobs </div>
             <div className = 'jobBox'>
               {
               this.props.roles.map((item, index) => {
