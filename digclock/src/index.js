@@ -5,6 +5,7 @@ import Enter from './Enter';
 import Supper from './Supper';
 import Homework from './Homework';
 import Literature from './Literature';
+import Outdoor from './Outdoor'
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route} from 'react-router-dom';
 
@@ -16,6 +17,7 @@ ReactDOM.render(
         <Route path='/Supper' component={Supper}/>
         <Route path='/Homework' component={Homework}/>
         <Route path='/Literature' component={Literature}/>
+        <Route path='/OutdoorTime' component={Outdoor}/>
       </div>
     </BrowserRouter>
   , document.getElementById('root'));
