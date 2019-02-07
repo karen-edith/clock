@@ -1,5 +1,6 @@
 .overallContainer{
-width: 100%;
+  width: 100%;
+  overflow:hidden;
 }
 
 .expectations{
@@ -11,6 +12,8 @@ width: 100%;
   border-top: 5px solid #203B29;
   border-bottom: 5px solid #203B29;
   color: #9ce2ff;
+  padding-bottom: 100%;
+  margin-bottom: -100%;
 }
 
 .expectationsTitle, .jobsTitle{
@@ -85,7 +88,9 @@ width: 100%;
   border: 5px solid #203B29;
   display: inline-block;
   color:#203B29;
-  background-color: #88bd00
+  background-color: #88bd00;
+  padding-bottom: 100%;
+  margin-bottom: -100%;
 }
 
 .image {
