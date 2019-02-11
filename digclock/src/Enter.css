@@ -4,6 +4,13 @@
   overflow:hidden;
 }
 
+.expectations:before, .jobs:before{
+  content:" ";
+  display:inline-block;
+  height:100%;
+  vertical-align:middle;
+}
+
 .expectations{
   width: 50%;
   display: inline-block;
@@ -20,8 +27,6 @@
 .test{
   width: 100%;
   border:1px solid red;
-  display: inline-block;
-  vertical-align: middle;
 }
 
 .expectationsTitle, .jobsTitle{

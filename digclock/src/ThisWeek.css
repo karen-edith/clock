@@ -1,0 +1,9 @@
+.Sports, .Ranking, .Loud, .Dance, .Announce, .Trips{
+  margin: 0 auto;
+  display: inline-block;
+  width: 48%;
+  border: 2px solid black;
+  text-align: center;
+  height: 400px;
+  margin: 10px;
+}
