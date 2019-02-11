@@ -6,4 +6,9 @@
   text-align: center;
   height: 400px;
   margin: 10px;
+  border: 5px solid white;
+}
+
+.activitiesContainer{
+  background-color: #008ac3;
 }

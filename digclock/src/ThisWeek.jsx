@@ -4,7 +4,7 @@ import './ThisWeek.css';
 class ThisWeek extends Component {
   render() {
     return (
-      <div>
+      <div className='activitiesContainer'>
         <div className='Sports'> Sports </div>
         <div className='Ranking'> Homework Ranking </div>
         <div className='Loud'> Loud </div>
