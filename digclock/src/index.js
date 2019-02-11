@@ -9,6 +9,7 @@ import Outdoor from './Outdoor';
 import Enrichment from './Enrichment';
 import Meetings from './Meetings';
 import Cleanup from './Cleanup';
+import ThisWeek from './ThisWeek';
 import registerServiceWorker from './registerServiceWorker';
 import {BrowserRouter, Route} from 'react-router-dom';
 
@@ -24,6 +25,7 @@ ReactDOM.render(
         <Route path='/Enrichment' component={Enrichment}/>
         <Route path='/Cleanup' component={Cleanup}/>
         <Route path='/IndividualMeetings' component={Meetings}/>
+        <Route path='/ThisWeek' component={ThisWeek}/>
       </div>
     </BrowserRouter>
   , document.getElementById('root'));
